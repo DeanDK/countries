@@ -1,4 +1,4 @@
-import firebase from "firebase"
+import firebase from "firebase";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -9,36 +9,36 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
-}
+};
 
 class Firebase {
-  private readonly auth: firebase.auth.Auth
+  private readonly auth: firebase.auth.Auth;
 
-  private readonly db: firebase.firestore.Firestore
+  private readonly db: firebase.firestore.Firestore;
 
   constructor() {
-    firebase.initializeApp(firebaseConfig)
-    this.auth = firebase.auth()
-    this.db = firebase.firestore()
+    firebase.initializeApp(firebaseConfig);
+    this.auth = firebase.auth();
+    this.db = firebase.firestore();
   }
 
   async register(
     email: string,
     password: string
   ): Promise<firebase.auth.UserCredential> {
-    return this.auth.createUserWithEmailAndPassword(email, password)
+    return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
   login(
     email: string,
     password: string
   ): Promise<firebase.auth.UserCredential> {
-    return this.auth.signInWithEmailAndPassword(email, password)
+    return this.auth.signInWithEmailAndPassword(email, password);
   }
 
   logout(): Promise<void> {
-    return this.auth.signOut()
+    return this.auth.signOut();
   }
 }
 
-export default new Firebase()
+export default new Firebase();

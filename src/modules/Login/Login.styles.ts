@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const LoginContainer = styled.div`
   height: 100%;
@@ -6,5 +6,6 @@ const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
-export { LoginContainer }
+  justify-content: center;
+`;
+export { LoginContainer };
