@@ -1,8 +1,8 @@
 import { ApolloProvider } from "@apollo/react-hooks"
 
-import { createApolloClient } from "./utils/createApolloClient"
+import { createApolloClient } from "../utils/createApolloClient"
 
-import "../styles/globals.css"
+import "./../../styles/globals.css"
 
 function MyApp({ Component, pageProps }) {
   const client = createApolloClient()
