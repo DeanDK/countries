@@ -11,34 +11,35 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
-class Firebase {
+export class Firebase {
   private readonly auth: firebase.auth.Auth;
 
-  private readonly db: firebase.firestore.Firestore;
-
   constructor() {
-    firebase.initializeApp(firebaseConfig);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
     this.auth = firebase.auth();
-    this.db = firebase.firestore();
   }
 
-  async register(
+  public async register(
     email: string,
     password: string
   ): Promise<firebase.auth.UserCredential> {
     return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  login(
+  public async login(
     email: string,
     password: string
   ): Promise<firebase.auth.UserCredential> {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 
-  logout(): Promise<void> {
+  public logout(): Promise<void> {
     return this.auth.signOut();
   }
 }
 
-export default new Firebase();
+const firebaseClient = new Firebase();
+
+export default firebaseClient;

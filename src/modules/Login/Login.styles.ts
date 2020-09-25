@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
+const Form = styled.form``;
+
 const LoginContainer = styled.div`
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
-export { LoginContainer };
+export { Form, LoginContainer };

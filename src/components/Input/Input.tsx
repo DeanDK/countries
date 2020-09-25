@@ -1,15 +1,15 @@
-import React from "react"
+import React from "react";
 
-import { Props } from "./Input.types"
-import { Field, InputContainer, Label } from "./Input.styles"
+import { Props } from "./Input.types";
+import { Field, InputContainer, Label } from "./Input.styles";
 
-const Input: React.FC<Props> = ({ label }) => {
+const Input: React.FC<Props> = ({ label, name, field }) => {
   return (
     <InputContainer>
       <Label>{label}</Label>
-      <Field />
+      <Field name={name} {...field} />
     </InputContainer>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;
