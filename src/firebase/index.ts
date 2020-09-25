@@ -10,7 +10,6 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
-
 export class Firebase {
   private readonly auth: firebase.auth.Auth;
 
