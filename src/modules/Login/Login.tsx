@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Field, Form, FormikErrors } from "formik";
 
 import { LoginContainer } from "./Login.styles";
@@ -7,6 +7,11 @@ import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
 const Login: React.FC = () => {
+  useEffect(() => {
+    const response = firebaseClient.logout();
+    console.log(response);
+  }, []);
+
   const handleSubmit = async (
     { email, password },
     setErrors: (
@@ -15,6 +20,7 @@ const Login: React.FC = () => {
   ) => {
     try {
       const response = await firebaseClient.login(email, password);
+      console.log(response);
     } catch (e) {
       if (e.code === "auth/invalid-email") {
         setErrors({ email: e.message, password: "" });

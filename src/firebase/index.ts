@@ -18,7 +18,7 @@ export class Firebase {
       firebase.initializeApp(firebaseConfig);
     }
     this.auth = firebase.auth();
-  }
+  } 
 
   public async register(
     email: string,
