@@ -26,9 +26,6 @@ export function centerAbsoluteElement(
     }`
 }
 
-/* 
-    center block element horizontally 
-*/
 export function centerBlockElement() {
   return `
         display: block;

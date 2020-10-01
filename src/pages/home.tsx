@@ -1,10 +1,14 @@
-import React from "react";
-import { NextPage } from "next";
+import React from "react"
+import { NextPage, NextPageContext } from "next"
 
-import { withAuth } from "../components/hoc/withAuth";
+import { isAuth } from "../utils/isAuth"
 
 const Home: NextPage = ({}) => {
-  return <div>Home</div>;
-};
+  return <div>Home</div>
+}
 
-export default withAuth(Home);
+export default Home
+
+export const getServerSideProps = (ctx: NextPageContext) => {
+  isAuth(ctx)
+}

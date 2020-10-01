@@ -2,9 +2,9 @@ import { ApolloProvider } from "@apollo/react-hooks"
 
 import { createApolloClient } from "../utils/createApolloClient"
 
-import "./../../styles/globals.css"
+import "../styles/globals.css"
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   const client = createApolloClient()
   return (
     <ApolloProvider client={client}>
@@ -13,4 +13,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default App
