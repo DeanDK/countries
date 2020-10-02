@@ -119,47 +119,52 @@ export enum CacheControlScope {
 }
 
 
-export type CountriesQueryVariables = Exact<{ [key: string]: never; }>;
+export type StatesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CountriesQuery = (
+export type StatesQuery = (
   { __typename?: 'Query' }
-  & { countries: Array<(
+  & { country?: Maybe<(
     { __typename?: 'Country' }
-    & Pick<Country, 'name'>
+    & { states: Array<(
+      { __typename?: 'State' }
+      & Pick<State, 'name'>
+    )> }
   )> }
 );
 
 
-export const CountriesDocument = gql`
-    query countries {
-  countries {
-    name
+export const StatesDocument = gql`
+    query States {
+  country(code: "US") {
+    states {
+      name
+    }
   }
 }
     `;
 
 /**
- * __useCountriesQuery__
+ * __useStatesQuery__
  *
- * To run a query within a React component, call `useCountriesQuery` and pass it any options that fit your needs.
- * When your component renders, `useCountriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useStatesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStatesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useCountriesQuery({
+ * const { data, loading, error } = useStatesQuery({
  *   variables: {
  *   },
  * });
  */
-export function useCountriesQuery(baseOptions?: Apollo.QueryHookOptions<CountriesQuery, CountriesQueryVariables>) {
-        return Apollo.useQuery<CountriesQuery, CountriesQueryVariables>(CountriesDocument, baseOptions);
+export function useStatesQuery(baseOptions?: Apollo.QueryHookOptions<StatesQuery, StatesQueryVariables>) {
+        return Apollo.useQuery<StatesQuery, StatesQueryVariables>(StatesDocument, baseOptions);
       }
-export function useCountriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountriesQuery, CountriesQueryVariables>) {
-          return Apollo.useLazyQuery<CountriesQuery, CountriesQueryVariables>(CountriesDocument, baseOptions);
+export function useStatesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StatesQuery, StatesQueryVariables>) {
+          return Apollo.useLazyQuery<StatesQuery, StatesQueryVariables>(StatesDocument, baseOptions);
         }
-export type CountriesQueryHookResult = ReturnType<typeof useCountriesQuery>;
-export type CountriesLazyQueryHookResult = ReturnType<typeof useCountriesLazyQuery>;
-export type CountriesQueryResult = Apollo.QueryResult<CountriesQuery, CountriesQueryVariables>;
+export type StatesQueryHookResult = ReturnType<typeof useStatesQuery>;
+export type StatesLazyQueryHookResult = ReturnType<typeof useStatesLazyQuery>;
+export type StatesQueryResult = Apollo.QueryResult<StatesQuery, StatesQueryVariables>;
