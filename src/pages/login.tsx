@@ -3,7 +3,6 @@ import NextHead from "next/head";
 import { NextPage } from "next";
 
 import Login from "../modules/Login/Login";
-import firebaseClient from "../firebase";
 
 const LoginPage: NextPage = () => {
   return (

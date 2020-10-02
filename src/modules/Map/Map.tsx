@@ -12,7 +12,9 @@ const styles: React.CSSProperties = {
 
 const Map: React.FC<Props> = ({ children }) => {
   const [mapboxClient, setMapboxClient] = useState<MapboxClient | null>(null);
+
   const [ssrDocument, setSsrDocument] = useState<Document | null>(null);
+
   const mapContainer = useRef(ssrDocument?.createElement("div"));
 
   useEffect(() => {
