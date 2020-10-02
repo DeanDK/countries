@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { MapboxClient } from "../../helpers/mapboxClient";
 import { Props } from "./Map.types";
+import { useCountriesQuery } from "../../generated/graphql";
+import { withApollo } from "./../../utils/withApollo";
 
 const styles: React.CSSProperties = {
   width: "100vw",
@@ -16,6 +18,10 @@ const Map: React.FC<Props> = ({ children }) => {
   const [ssrDocument, setSsrDocument] = useState<Document | null>(null);
 
   const mapContainer = useRef(ssrDocument?.createElement("div"));
+
+  const { loading, error, data } = useCountriesQuery({ variables: {} });
+
+  console.log(data);
 
   useEffect(() => {
     setSsrDocument(document);
@@ -33,9 +39,8 @@ const Map: React.FC<Props> = ({ children }) => {
   return (
     <React.Fragment>
       <div ref={(el) => el && (mapContainer.current = el)} style={styles} />
-      {children}
     </React.Fragment>
   );
 };
 
-export default Map;
+export default withApollo({ ssr: false })(Map);

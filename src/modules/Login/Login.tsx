@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
 import { LoginContainer } from "./Login.styles";
-import firebaseClient from "../../firebase";
+import firebaseClient from "../../helpers/firebaseClient";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 

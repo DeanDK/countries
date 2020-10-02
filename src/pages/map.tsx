@@ -11,6 +11,7 @@ const Map: NextPage = () => {
       <NextHead>
         <title>Map</title>
       </NextHead>
+      <MapPage />
     </>
   );
 };
