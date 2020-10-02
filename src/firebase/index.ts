@@ -1,4 +1,4 @@
-import firebase from "firebase"
+import firebase from "firebase";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -9,53 +9,53 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
-}
+};
 export class Firebase {
-  private readonly auth: firebase.auth.Auth
-  private _user: firebase.auth.UserCredential
-
-  get user(): firebase.auth.UserCredential {
-    return this._user
-  }
-
-  set user(value: firebase.auth.UserCredential) {
-    this._user = value
-  }
+  private readonly auth: firebase.auth.Auth;
+  private _user: firebase.auth.UserCredential | null = null;
 
   constructor() {
     if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig)
+      firebase.initializeApp(firebaseConfig);
     }
-    this.auth = firebase.auth()
+    this.auth = firebase.auth();
+  }
+
+  get user(): firebase.auth.UserCredential {
+    return this._user;
+  }
+
+  set user(value: firebase.auth.UserCredential) {
+    this._user = value;
   }
 
   public async register(
     email: string,
     password: string
   ): Promise<firebase.auth.UserCredential> {
-    return this.auth.createUserWithEmailAndPassword(email, password)
+    return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
   public async login(
     email: string,
     password: string
   ): Promise<firebase.auth.UserCredential> {
-    return this.auth.signInWithEmailAndPassword(email, password)
+    return this.auth.signInWithEmailAndPassword(email, password);
   }
 
   public logout(): Promise<void> {
-    return this.auth.signOut()
+    return this.auth.signOut();
   }
 
   public getUser(): firebase.User {
-    return this.auth.currentUser
+    return this.auth.currentUser;
   }
 
   public onAuthStateChanged() {
-    return this.auth.onAuthStateChanged
+    return this.auth.onAuthStateChanged;
   }
 }
 
-const firebaseClient = new Firebase()
+const firebaseClient = new Firebase();
 
-export default firebaseClient
+export default firebaseClient;
