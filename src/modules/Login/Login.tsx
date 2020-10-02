@@ -10,7 +10,6 @@ import Input from "../../components/Input/Input";
 
 const Login: React.FC = () => {
   const router = useRouter();
-
   const [_, setCookie] = useCookies(["firebaseUser"]);
 
   const handleSubmit = async (
@@ -20,8 +19,8 @@ const Login: React.FC = () => {
     ) => void
   ) => {
     try {
-      const response = await firebaseClient.login(email, password);
-      setCookie("firebaseUser", response.user);
+      const { user } = await firebaseClient.login(email, password);
+      setCookie("firebaseUser", user);
       router.push({ pathname: "/home" });
     } catch (e) {
       if (e.code === "auth/invalid-email") {
