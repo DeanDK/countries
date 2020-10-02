@@ -10,23 +10,15 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
+
 export class Firebase {
   private readonly auth: firebase.auth.Auth;
-  private _user: firebase.auth.UserCredential | null = null;
 
   constructor() {
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
     this.auth = firebase.auth();
-  }
-
-  get user(): firebase.auth.UserCredential {
-    return this._user;
-  }
-
-  set user(value: firebase.auth.UserCredential) {
-    this._user = value;
   }
 
   public async register(
@@ -45,14 +37,6 @@ export class Firebase {
 
   public logout(): Promise<void> {
     return this.auth.signOut();
-  }
-
-  public getUser(): firebase.User {
-    return this.auth.currentUser;
-  }
-
-  public onAuthStateChanged() {
-    return this.auth.onAuthStateChanged;
   }
 }
 

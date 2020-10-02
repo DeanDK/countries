@@ -2,12 +2,13 @@ import { NextPageContext } from "next";
 import Cookies from "cookies";
 
 export const isAuth = (ctx: NextPageContext) => {
-  const cookie = new Cookies(ctx.req, ctx.res);
+  const { req, res } = ctx;
+  const cookie = new Cookies(req, res);
   const firebaseUser = cookie.get("firebaseUser");
 
   if (!firebaseUser) {
-    ctx.res.writeHead(302, { Location: "/login" });
-    ctx.res.end();
+    res.writeHead(302, { Location: "/login" });
+    res.end();
     return { props: {} };
   }
 
