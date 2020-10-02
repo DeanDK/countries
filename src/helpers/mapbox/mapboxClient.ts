@@ -1,6 +1,5 @@
 import mapboxgl from "mapbox-gl";
-
-import { LayerDataModel } from "../models/Map";
+import { LayerDataModel } from "./mapboxClient.types";
 
 export class MapboxClient {
   get map() {
@@ -12,16 +11,7 @@ export class MapboxClient {
   }
 
   private _map: mapboxgl.Map;
-  private mapImages: Array<{ url: string; name: string }> = [
-    {
-      url: "assets/images/bike-metrics/bike-icon.png",
-      name: "bike-icon",
-    },
-    {
-      url: "assets/images/bike-metrics/bike-selected.png",
-      name: "bike-selected-icon",
-    },
-  ];
+  private mapImages: Array<{ url: string; name: string }> = [];
 
   constructor(mapContainer?: React.MutableRefObject<HTMLDivElement>) {
     if (mapContainer) {
@@ -33,31 +23,6 @@ export class MapboxClient {
         zoom: 5,
       });
     }
-  }
-
-  private addMarkerDataToSource(
-    layerSource: mapboxgl.GeoJSONSource,
-    layers: string[]
-  ) {
-    const markerData: any = [];
-    const markerDataGeoJSONObj: any = {};
-
-    for (const i of layers) {
-      markerData.push({
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [0, 0],
-        },
-        properties: {
-          id: i.toString(),
-        },
-      });
-    }
-
-    markerDataGeoJSONObj.type = "FeatureCollection";
-    markerDataGeoJSONObj.features = markerData;
-    layerSource.setData(markerDataGeoJSONObj);
   }
 
   public loadMapImages(): Promise<unknown> {
@@ -97,5 +62,30 @@ export class MapboxClient {
         filter: ["==", "$type", "Point"],
       });
     });
+  }
+
+  private addMarkerDataToSource(
+    layerSource: mapboxgl.GeoJSONSource,
+    layers: string[]
+  ) {
+    const markerData: any = [];
+    const markerDataGeoJSONObj: any = {};
+
+    for (const i of layers) {
+      markerData.push({
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [0, 0],
+        },
+        properties: {
+          id: i.toString(),
+        },
+      });
+    }
+
+    markerDataGeoJSONObj.type = "FeatureCollection";
+    markerDataGeoJSONObj.features = markerData;
+    layerSource.setData(markerDataGeoJSONObj);
   }
 }

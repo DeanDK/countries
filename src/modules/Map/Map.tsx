@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { MapboxClient } from "../../helpers/mapboxClient";
+import { MapboxClient } from "../../helpers/mapbox/mapboxClient";
 import { Props } from "./Map.types";
 import { useCountriesQuery } from "../../generated/graphql";
 import { withApollo } from "./../../utils/withApollo";

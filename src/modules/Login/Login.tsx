@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
 import { LoginContainer } from "./Login.styles";
-import firebaseClient from "../../helpers/firebaseClient";
+import firebaseClient from "../../helpers/firebase/firebaseClient";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
@@ -21,7 +21,7 @@ const Login: React.FC = () => {
     try {
       const { user } = await firebaseClient.login(email, password);
       setCookie("firebaseUser", user);
-      router.push({ pathname: "/home" });
+      router.push({ pathname: "/map" });
     } catch (e) {
       if (e.code === "auth/invalid-email") {
         setErrors({ email: e.message, password: "" });
