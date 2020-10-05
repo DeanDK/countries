@@ -3,7 +3,7 @@ import NextHead from "next/head"
 import { NextPage, NextPageContext } from "next"
 
 import { isAuth } from "../utils/isAuth"
-import MapPage from "../modules/Map/Map"
+import MapPage from "../presentation/modules/Map/Map"
 
 const Map: NextPage = () => {
   return (
