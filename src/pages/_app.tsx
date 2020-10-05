@@ -1,16 +1,16 @@
-import React from "react";
+import React from "react"
 
-import { LocationContextProvider } from "../context/locationContext";
+import { LocationContextProvider } from "../data/context/locationContext"
 
-import "../styles/globals.css";
-import "mapbox-gl/dist/mapbox-gl.css";
+import "../presentation/styles/globals.css"
+import "mapbox-gl/dist/mapbox-gl.css"
 
 function App({ Component, pageProps }) {
   return (
     <LocationContextProvider>
       <Component {...pageProps} />
     </LocationContextProvider>
-  );
+  )
 }
 
-export default App;
+export default App

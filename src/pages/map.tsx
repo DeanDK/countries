@@ -1,9 +1,9 @@
-import React from "react";
-import NextHead from "next/head";
-import { NextPage, NextPageContext } from "next";
+import React from "react"
+import NextHead from "next/head"
+import { NextPage, NextPageContext } from "next"
 
-import { isAuth } from "../utils/isAuth";
-import MapPage from "./../modules/Map/Map";
+import { isAuth } from "../utils/isAuth"
+import MapPage from "../modules/Map/Map"
 
 const Map: NextPage = () => {
   return (
@@ -13,9 +13,9 @@ const Map: NextPage = () => {
       </NextHead>
       <MapPage />
     </>
-  );
-};
+  )
+}
 
-export default Map;
+export default Map
 
-export const getServerSideProps = async (ctx: NextPageContext) => isAuth(ctx);
+export const getServerSideProps = async (ctx: NextPageContext) => isAuth(ctx)

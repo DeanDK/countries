@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { Formik, Field, Form, FormikErrors } from "formik"
 import { useRouter } from "next/router"
 import { useCookies } from "react-cookie"
 
 import { LoginContainer } from "./Login.styles"
-import { RootStoreContext } from "../../domain/stores/rootStore"
-import Button from "../../presentation/components/Button/Button"
-import Input from "../../presentation/components/Input/Input"
+import { RootStoreContext } from "../../../domain/stores/rootStore"
+import Button from "../../components/Button/Button"
+import Input from "../../components/Input/Input"
 
 const Login: React.FC = () => {
   const router = useRouter()

@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react"
 
 import { MapboxClient } from "../../../data/mapbox/mapboxClient"
 import { Props } from "./Map.types"
-import { useStatesQuery } from "../../data/graphql/generated/graphql"
+import { useStatesQuery } from "../../../data/graphql/generated/graphql"
 import { withApollo } from "../../../data/graphql/withApollo"
-import { useAPI } from "../../utils/useAPI"
-import { LocationContext } from "../../data/context/locationContext"
+import { useAPI } from "../../../utils/useAPI"
+import { LocationContext } from "../../../data/context/locationContext"
 
 const styles: React.CSSProperties = {
   width: "100vw",
