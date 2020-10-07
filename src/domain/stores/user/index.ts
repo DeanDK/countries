@@ -1,5 +1,5 @@
-import { action, computed } from "mobx"
-import firebaseClient from "../../../../data/firebase/firebaseClient"
+import { action } from "mobx"
+import firebaseClient from "../../../data/firebase/firebaseClient"
 
 import { RootStore } from "./../rootStore"
 

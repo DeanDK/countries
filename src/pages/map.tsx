@@ -6,8 +6,8 @@ import { isAuth } from "../utils/isAuth"
 import { createClient } from "../data/graphql/withApollo"
 import { StatesDocument, StatesQuery } from "../data/graphql/generated/graphql"
 import { Props } from "../presentation/modules/Select/Select.types"
-import MapPage from "../presentation/modules/Map/Map"
-import Select from "../presentation/modules/Select/Select"
+import MapPage from "../presentation/modules/Map"
+import Select from "../presentation/modules/Select"
 
 const Map: NextPage<Props> = ({ data, loading, error }) => {
   return (

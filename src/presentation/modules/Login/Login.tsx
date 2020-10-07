@@ -5,8 +5,8 @@ import { useCookies } from "react-cookie"
 
 import { LoginContainer } from "./Login.styles"
 import { RootStoreContext } from "../../../domain/stores/rootStore"
-import Button from "../../components/Button/Button"
-import Input from "../../components/Input/Input"
+import Button from "./../../components/Button"
+import Input from "../../components/Input"
 
 const Login: React.FC = () => {
   const router = useRouter()
