@@ -71,29 +71,4 @@ export class MapboxClient {
       })
     })
   }
-
-  private addMarkerDataToSource(
-    layerSource: mapboxgl.GeoJSONSource,
-    layers: string[]
-  ) {
-    const markerData: any = []
-    const markerDataGeoJSONObj: any = {}
-
-    for (const i of layers) {
-      markerData.push({
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [0, 0],
-        },
-        properties: {
-          id: i.toString(),
-        },
-      })
-    }
-
-    markerDataGeoJSONObj.type = "FeatureCollection"
-    markerDataGeoJSONObj.features = markerData
-    layerSource.setData(markerDataGeoJSONObj)
-  }
 }
