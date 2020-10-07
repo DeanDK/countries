@@ -10,8 +10,11 @@ import Input from "../../components/Input/Input"
 
 const Login: React.FC = () => {
   const router = useRouter()
+
   const rootStore = useContext(RootStoreContext)
+
   const [_, setCookie] = useCookies(["firebaseUser"])
+
   const { login } = rootStore.userStore
 
   const handleSubmit = async (

@@ -2,10 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 
 import { MapboxClient } from "../../../data/mapbox/mapboxClient"
 import { Props } from "./Map.types"
-import { useStatesQuery } from "../../../data/graphql/generated/graphql"
 import { withApollo } from "../../../data/graphql/withApollo"
-import { useAPI } from "../../../utils/useAPI"
-import { LocationContext } from "../../../data/context/locationContext"
 
 const styles: React.CSSProperties = {
   width: "100vw",
@@ -20,12 +17,6 @@ const Map: React.FC<Props> = ({ children }) => {
   const [ssrDocument, setSsrDocument] = useState<Document | null>(null)
 
   const mapContainer = useRef(ssrDocument?.createElement("div"))
-
-  const { loading, error, data } = useStatesQuery({ variables: {} })
-
-  const position = useAPI(LocationContext)
-
-  console.log(data)
 
   useEffect(() => {
     setSsrDocument(document)
