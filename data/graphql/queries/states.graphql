@@ -1,7 +1,0 @@
-query States {
-  country(code: "US") {
-    states {
-      name
-    }
-  }
-}
