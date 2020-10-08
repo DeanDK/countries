@@ -1,32 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Motivation
 
-## Getting Started
+This project is purely made as a proof of concept for React Clean Architecture, inspired by [Trading Card Manager](https://github.com/mtg-community/trading-card-manager). I by no means am saying that it's supposed to be done this way. Quite contrary, I am also beginner and I hope this might inspire someone and will be used as a template for a discussion. Project itself has absolutely no real life value or purpose.
 
-First, run the development server:
+## Stack + Platforms
 
-```bash
-npm run dev
-# or
-yarn dev
+- React/NextJs
+- MobX
+- Typescript
+- Styled Components
+- GraphQL + Apollo
+- Firebase
+- Mapbox
+
+## Login Credentials
+
+```
+email: test@test.com
+password: testtest
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Architecture
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## data
 
-## Learn More
+The data layer is responsible for handloing connections with the outside world, all data that is accessed or sent outside the application passes through here.
 
-To learn more about Next.js, take a look at the following resources:
+## domain
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The domain layer is responsbile for connecting the data module with application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## pages
 
-## Deploy on Vercel
+NextJS pages. I wanted to move it to presentation layer, but AFAIK, you can't.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## presentation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-###
+The presentation layer is where we create graphical interface and where we receive interaction with the user. This layer should contains as little logic as possible and it is forbidden to communicate directly with the data layer or contain any bussines logic, rules etc.
