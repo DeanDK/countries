@@ -1,6 +1,5 @@
 import React from "react"
 import Dropdown from "react-dropdown"
-import defaultOption from "react-dropdown"
 
 import mapboxClient from "../../../data/mapbox/mapboxClient"
 import { getStatesName } from "../../../utils/getStatesName"
@@ -8,6 +7,8 @@ import { Props } from "./Select.types"
 
 const Select: React.FC<Props> = ({ data }) => {
   const states = getStatesName(data.country.states)
+
+  const defaultOption = states[0]
 
   const handleChange = async (option: { value: string; label: string }) => {
     const state = option.value
