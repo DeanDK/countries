@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 
-import { MapboxClient } from "../../../data/mapbox/mapboxClient"
 import { Props } from "./Map.types"
 import { withApollo } from "../../../data/graphql/withApollo"
+import mapboxClient from "./../../../data/mapbox/mapboxClient"
 
 const styles: React.CSSProperties = {
   width: "100vw",
@@ -12,7 +12,7 @@ const styles: React.CSSProperties = {
 }
 
 const Map: React.FC<Props> = ({ children }) => {
-  const [mapboxClient, setMapboxClient] = useState<MapboxClient | null>(null)
+  const [mapbox, setMapbox] = useState<typeof mapboxClient | null>(null)
 
   const [ssrDocument, setSsrDocument] = useState<Document | null>(null)
 
@@ -20,16 +20,17 @@ const Map: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     setSsrDocument(document)
-    const initializeMap = ({ setMapboxClient, mapContainer }) => {
-      const mapboxClient = new MapboxClient(mapContainer)
+    const initializeMap = ({ setMapbox, mapContainer }) => {
+      mapboxClient.initializeMap(mapContainer)
+
       mapboxClient.map.on("load", () => {
-        setMapboxClient(mapboxClient)
+        setMapbox(mapbox)
         mapboxClient.map.resize()
       })
     }
 
-    if (!mapboxClient) initializeMap({ setMapboxClient, mapContainer })
-  }, [mapboxClient])
+    if (!mapbox) initializeMap({ setMapbox, mapContainer })
+  }, [mapbox])
 
   return (
     <React.Fragment>

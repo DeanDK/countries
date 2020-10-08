@@ -2,7 +2,7 @@ import mapboxgl from "mapbox-gl"
 import httpClient from "../http/httpClient"
 import { LayerDataModel } from "./mapboxClient.types"
 
-export class MapboxClient {
+class MapboxClient {
   get map() {
     return this._map
   }
@@ -15,22 +15,24 @@ export class MapboxClient {
   private mapImages: Array<{ url: string; name: string }> = []
   private accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
 
-  constructor(mapContainer?: React.MutableRefObject<HTMLDivElement>) {
-    if (mapContainer) {
-      this.map = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: "mapbox://styles/mapbox/dark-v10",
-        accessToken: this.accessToken,
-        center: [0, 0],
-        zoom: 5,
-      })
-    }
+  public initializeMap(mapContainer: React.MutableRefObject<HTMLDivElement>) {
+    this.map = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: "mapbox://styles/mapbox/dark-v10",
+      accessToken: this.accessToken,
+      center: [0, 0],
+      zoom: 5,
+    })
   }
 
   public async getGeoLocationData(target: string) {
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${target}.json?access_token=${this.accessToken}`
 
     return await httpClient.get(url, "application/json")
+  }
+
+  public flyToLocation(lng: number, lat: number) {
+    this.map.flyTo({ center: [lng, lat] })
   }
 
   public loadMapImages(): Promise<unknown> {
@@ -72,3 +74,7 @@ export class MapboxClient {
     })
   }
 }
+
+const mapboxClient = new MapboxClient()
+
+export default mapboxClient
